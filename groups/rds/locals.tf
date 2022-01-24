@@ -9,11 +9,13 @@ locals {
     bi4aud = data.vault_generic_secret.bi4aud_rds.data
     bi4cms = data.vault_generic_secret.bi4cms_rds.data
   }
+  busobj_rds_data = data.vault_generic_secret.busobj_rds.data
 
   rds_ingress_from_services = {
     "bi4aud" = []
     "bi4cms" = []
   }
+  busobj_rds_ingress_from_services = []
 
   default_tags = {
     Terraform = "true"

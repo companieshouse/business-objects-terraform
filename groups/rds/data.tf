@@ -40,6 +40,10 @@ data "vault_generic_secret" "bi4cms_rds" {
   path = "applications/${var.aws_profile}/bi4cms/rds"
 }
 
+data "vault_generic_secret" "busobj_rds" {
+  path = "applications/${var.aws_profile}/bi4busobj/rds"
+}
+
 data "vault_generic_secret" "internal_cidrs" {
   path = "aws-accounts/network/internal_cidr_ranges"
 }
