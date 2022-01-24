@@ -47,7 +47,7 @@ module "busobj_rds_security_group" {
       cidr_blocks = join(",", local.admin_cidrs)
     }
   ]
-  ingress_with_source_security_group_id = []
+  ingress_with_source_security_group_id = local.busobj_rds_ingress_from_services
 
   egress_rules = ["all-all"]
 }
