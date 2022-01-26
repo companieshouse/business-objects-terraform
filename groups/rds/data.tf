@@ -19,6 +19,13 @@ data "aws_security_group" "rds_shared" {
   }
 }
 
+data "aws_security_group" "busobj_app" {
+  filter {
+    name   = "group-name"
+    values = ["sgr-windows-workloads-bus-obj-*"]
+  }
+}
+
 data "aws_route53_zone" "private_zone" {
   name         = local.internal_fqdn
   private_zone = true
