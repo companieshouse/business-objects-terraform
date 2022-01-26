@@ -12,10 +12,34 @@ locals {
   busobj_rds_data = data.vault_generic_secret.busobj_rds.data
 
   rds_ingress_from_services = {
-    "bi4aud" = []
-    "bi4cms" = []
+    "bi4aud" = [
+      {
+        from_port                = 1521
+        to_port                  = 1521
+        protocol                 = "tcp"
+        description              = "Business Objects Application Access"
+        source_security_group_id = data.aws_security_group.busobj_app.id
+      }
+    ],
+    "bi4cms" = [
+      {
+        from_port                = 1521
+        to_port                  = 1521
+        protocol                 = "tcp"
+        description              = "Business Objects Application Access"
+        source_security_group_id = data.aws_security_group.busobj_app.id
+      }
+    ]
   }
-  busobj_rds_ingress_from_services = []
+  busobj_rds_ingress_from_services = [
+      {
+        from_port                = 1521
+        to_port                  = 1521
+        protocol                 = "tcp"
+        description              = "Business Objects Application Access"
+        source_security_group_id = data.aws_security_group.busobj_app.id
+      }
+  ]
 
   default_tags = {
     Terraform = "true"
