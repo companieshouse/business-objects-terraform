@@ -3,3 +3,7 @@ output "rds_addresses" {
     dns.name => dns.fqdn
   }
 }
+
+output "busobj_rds_address" {
+  value = aws_route53_record.busobj_rds.fqdn
+}

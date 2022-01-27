@@ -19,6 +19,13 @@ data "aws_security_group" "rds_shared" {
   }
 }
 
+data "aws_security_group" "busobj_app" {
+  filter {
+    name   = "group-name"
+    values = ["sgr-windows-workloads-bus-obj-*"]
+  }
+}
+
 data "aws_route53_zone" "private_zone" {
   name         = local.internal_fqdn
   private_zone = true
@@ -38,6 +45,10 @@ data "vault_generic_secret" "bi4aud_rds" {
 
 data "vault_generic_secret" "bi4cms_rds" {
   path = "applications/${var.aws_profile}/bi4cms/rds"
+}
+
+data "vault_generic_secret" "busobj_rds" {
+  path = "applications/${var.aws_profile}/bi4busobj/rds"
 }
 
 data "vault_generic_secret" "internal_cidrs" {
