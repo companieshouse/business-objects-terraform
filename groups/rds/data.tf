@@ -48,7 +48,7 @@ data "vault_generic_secret" "bi4cms_rds" {
 }
 
 data "vault_generic_secret" "busobj_rds" {
-  path = "applications/${var.aws_profile}/bi4busobj/rds"
+  path = "applications/${var.aws_profile}/bibusobj/rds"
 }
 
 data "vault_generic_secret" "internal_cidrs" {

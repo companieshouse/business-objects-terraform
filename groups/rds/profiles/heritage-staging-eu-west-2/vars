@@ -76,8 +76,8 @@ rds_databases = {
 
 # RDS Instance settings
 character_set_name           = "AL32UTF8"
-identifier                   = "bi4busobj"
-name                         = "bi4busobj"
+identifier                   = "bibusobj"
+name                         = "bibusobj"
 instance_class               = "db.m5.xlarge"
 allocated_storage            = 20
 backup_retention_period      = 2
