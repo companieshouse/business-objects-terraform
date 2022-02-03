@@ -41,10 +41,6 @@ variable "environment" {
 # ------------------------------------------------------------------------------
 # RDS Variables
 # ------------------------------------------------------------------------------
-variable "rds_databases" {
-  type = map
-}
-
 variable "character_set_name" {
   type        = string
   description = "Default character set for the database"

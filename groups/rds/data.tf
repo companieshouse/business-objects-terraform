@@ -39,14 +39,6 @@ data "aws_kms_key" "rds" {
   key_id = "alias/kms-rds"
 }
 
-data "vault_generic_secret" "bi4aud_rds" {
-  path = "applications/${var.aws_profile}/bi4aud/rds"
-}
-
-data "vault_generic_secret" "bi4cms_rds" {
-  path = "applications/${var.aws_profile}/bi4cms/rds"
-}
-
 data "vault_generic_secret" "busobj_rds" {
   path = "applications/${var.aws_profile}/bibusobj/rds"
 }
