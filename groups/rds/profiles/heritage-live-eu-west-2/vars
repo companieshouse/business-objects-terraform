@@ -110,3 +110,5 @@ parameter_group_settings = [
     value = "AUTO"
   },
 ]
+
+rds_schedule_enable = false
