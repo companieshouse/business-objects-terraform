@@ -22,7 +22,7 @@ data "aws_security_group" "rds_shared" {
 data "aws_security_group" "busobj_app" {
   filter {
     name   = "group-name"
-    values = ["sgr-windows-workloads-bus-obj-*"]
+    values = ["sgr-windows-workloads-bus-obj-*-server-*"]
   }
 }
 
