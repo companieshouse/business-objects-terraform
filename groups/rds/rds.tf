@@ -17,7 +17,7 @@ module "busobj_rds_security_group" {
 
 resource "aws_security_group_rule" "admin_ingress" {
 
-  description       = "Permit access from admin ranges"
+  description       = "Allow Oracle DB listener from admin prefix list"
   type              = "ingress"
   from_port         = 1521
   to_port           = 1521
@@ -28,7 +28,7 @@ resource "aws_security_group_rule" "admin_ingress" {
 
 resource "aws_security_group_rule" "admin_ingress_oem" {
 
-  description       = "Permit access to Oracle Enterprise Manager from admin ranges"
+  description       = "Allow Oracle Enterprise Manager from admin prefix list"
   type              = "ingress"
   from_port         = 5500
   to_port           = 5500
