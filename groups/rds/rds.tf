@@ -10,22 +10,32 @@ module "busobj_rds_security_group" {
   description = "Security group for the ${var.identifier} RDS database"
   vpc_id      = data.aws_vpc.vpc.id
 
-  ingress_cidr_blocks = local.admin_cidrs
-  ingress_rules       = ["oracle-db-tcp"]
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 5500
-      to_port     = 5500
-      protocol    = "tcp"
-      description = "Oracle Enterprise Manager"
-      cidr_blocks = join(",", local.admin_cidrs)
-    }
-  ]
   ingress_with_source_security_group_id = local.busobj_rds_ingress_from_services
 
   egress_rules = ["all-all"]
 }
 
+resource "aws_security_group_rule" "admin_ingress" {
+
+  description       = "Permit access from admin ranges"
+  type              = "ingress"
+  from_port         = 1521
+  to_port           = 1521
+  protocol          = "tcp"
+  prefix_list_ids   = [data.aws_ec2_managed_prefix_list.admin.id]
+  security_group_id = module.busobj_rds_security_group.this_security_group_id
+}
+
+resource "aws_security_group_rule" "admin_ingress_oem" {
+
+  description       = "Permit access to Oracle Enterprise Manager from admin ranges"
+  type              = "ingress"
+  from_port         = 5500
+  to_port           = 5500
+  protocol          = "tcp"
+  prefix_list_ids   = [data.aws_ec2_managed_prefix_list.admin.id]
+  security_group_id = module.busobj_rds_security_group.this_security_group_id
+}
 # ------------------------------------------------------------------------------
 # RDS Instance
 # ------------------------------------------------------------------------------
