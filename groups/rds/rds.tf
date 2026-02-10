@@ -91,6 +91,10 @@ module "busobj_rds" {
     data.aws_security_group.rds_shared.id
   ]
 
+  option_group_description = "Option group for ${join("-", ["rds", var.identifier, var.environment, "001"])}"
+  parameter_group_description = "Database parameter group for ${join("-", ["rds", var.identifier, var.environment, "001"])}"
+  db_subnet_group_description = "Database subnet group for ${join("-", ["rds", var.identifier, var.environment, "001"])}"
+
   # DB subnet group
   subnet_ids = data.aws_subnets.data.ids
 
@@ -116,6 +120,7 @@ module "busobj_rds" {
   tags = merge(
     local.default_tags,
     {
+      Name = "rds-${var.identifier}-${var.environment}-001"
       ServiceTeam = "${upper(var.identifier)}-DBA-Support"
     }
   )
