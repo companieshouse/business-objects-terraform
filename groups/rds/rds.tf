@@ -61,17 +61,17 @@ module "busobj_rds" {
   storage_encrypted          = true
   kms_key_id                 = data.aws_kms_key.rds.arn
 
-  db_name     = upper(var.name)
+  db_name  = upper(var.name)
   username = local.busobj_rds_data["admin-username"]
   password = local.busobj_rds_data["admin-password"]
   port     = "1521"
 
-  manage_master_user_password = false
-  deletion_protection       = true
-  maintenance_window        = var.rds_maintenance_window
-  backup_window             = var.rds_backup_window
-  backup_retention_period   = var.backup_retention_period
-  skip_final_snapshot       = false
+  manage_master_user_password      = false
+  deletion_protection              = true
+  maintenance_window               = var.rds_maintenance_window
+  backup_window                    = var.rds_backup_window
+  backup_retention_period          = var.backup_retention_period
+  skip_final_snapshot              = false
   final_snapshot_identifier_prefix = "${var.identifier}-final-deletion-snapshot"
 
   # Enhanced Monitoring
