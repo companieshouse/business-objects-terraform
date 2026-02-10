@@ -61,7 +61,7 @@ module "busobj_rds" {
   storage_encrypted          = true
   kms_key_id                 = data.aws_kms_key.rds.arn
 
-  name     = upper(var.name)
+  db_name     = upper(var.name)
   username = local.busobj_rds_data["admin-username"]
   password = local.busobj_rds_data["admin-password"]
   port     = "1521"
@@ -72,7 +72,7 @@ module "busobj_rds" {
   backup_window             = var.rds_backup_window
   backup_retention_period   = var.backup_retention_period
   skip_final_snapshot       = false
-  final_snapshot_identifier = "${var.identifier}-final-deletion-snapshot"
+  final_snapshot_identifier_prefix = "${var.identifier}-final-deletion-snapshot"
 
   # Enhanced Monitoring
   monitoring_interval             = "30"
@@ -115,11 +115,12 @@ module "busobj_rds" {
 
   tags = merge(
     local.default_tags,
-    map(
-      "ServiceTeam", "${upper(var.identifier)}-DBA-Support"
-    )
+    {
+      ServiceTeam = "${upper(var.identifier)}-DBA-Support"
+    }
   )
 }
+
 
 module "rds_start_stop_schedule" {
   source = "git@github.com:companieshouse/terraform-modules//aws/rds_start_stop_schedule?ref=tags/1.0.354"
