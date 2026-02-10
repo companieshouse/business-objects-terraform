@@ -4,7 +4,7 @@
 module "busobj_rds_security_group" {
 
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 3.0"
+  version = "~> 5.0"
 
   name        = "sgr-${var.identifier}-rds-001"
   description = "Security group for the ${var.identifier} RDS database"
