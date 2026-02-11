@@ -89,28 +89,3 @@ This repository contains Terraform code necessary to deploy infrastructure resou
 | Name | Description |
 |------|-------------|
 | <a name="output_busobj_rds_address"></a> [busobj\_rds\_address](#output\_busobj\_rds\_address) | n/a |
-<!-- BEGIN_TF_DOCS -->
-## Requirements
-
-No requirements.
-
-## Providers
-
-No providers.
-
-## Modules
-
-No modules.
-
-## Resources
-
-No resources.
-
-## Inputs
-
-No inputs.
-
-## Outputs
-
-No outputs.
-<!-- END_TF_DOCS -->
