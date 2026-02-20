@@ -13,6 +13,15 @@ module "busobj_rds_security_group" {
   ingress_with_source_security_group_id = local.busobj_rds_ingress_from_services
 
   egress_rules = ["all-all"]
+
+  tags = merge(
+    local.default_tags,
+    {
+      Name        = "sgr-${var.identifier}-rds-001"
+      ServiceTeam = "${upper(var.identifier)}-DBA-Support"
+    }
+  )
+
 }
 
 resource "aws_security_group_rule" "admin_ingress" {
@@ -36,6 +45,7 @@ resource "aws_security_group_rule" "admin_ingress_oem" {
   prefix_list_ids   = [data.aws_ec2_managed_prefix_list.admin.id]
   security_group_id = module.busobj_rds_security_group.security_group_id
 }
+
 # ------------------------------------------------------------------------------
 # RDS Instance
 # ------------------------------------------------------------------------------
