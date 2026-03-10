@@ -4,7 +4,7 @@
 module "busobj_rds_security_group" {
 
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 5.0"
+  version = "5.3.1"
 
   name        = "sgr-${var.identifier}-rds-001"
   description = "Security group for the ${var.identifier} RDS database"
@@ -101,7 +101,7 @@ module "busobj_rds" {
     data.aws_security_group.rds_shared.id
   ]
 
-  option_group_description = "Option group for ${join("-", ["rds", var.identifier, var.environment, "001"])}"
+  option_group_description    = "Option group for ${join("-", ["rds", var.identifier, var.environment, "001"])}"
   parameter_group_description = "Database parameter group for ${join("-", ["rds", var.identifier, var.environment, "001"])}"
   db_subnet_group_description = "Database subnet group for ${join("-", ["rds", var.identifier, var.environment, "001"])}"
 
@@ -130,7 +130,7 @@ module "busobj_rds" {
   tags = merge(
     local.default_tags,
     {
-      Name = "rds-${var.identifier}-${var.environment}-001"
+      Name        = "rds-${var.identifier}-${var.environment}-001"
       ServiceTeam = "${upper(var.identifier)}-DBA-Support"
     }
   )
