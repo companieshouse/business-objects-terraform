@@ -7,13 +7,13 @@ locals {
   busobj_rds_data = data.vault_generic_secret.busobj_rds.data
 
   busobj_rds_ingress_from_services = [
-      {
-        from_port                = 1521
-        to_port                  = 1521
-        protocol                 = "tcp"
-        description              = "Business Objects Application Access"
-        source_security_group_id = data.aws_security_group.busobj_app.id
-      }
+    {
+      from_port                = 1521
+      to_port                  = 1521
+      protocol                 = "tcp"
+      description              = "Business Objects Application Access"
+      source_security_group_id = data.aws_security_group.busobj_app.id
+    }
   ]
 
   default_tags = {
